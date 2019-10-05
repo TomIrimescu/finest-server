@@ -25,7 +25,7 @@ export class IexService {
             datetime: new Date(newsItem.datetime).toDateString(),
             // handle missing news image
             ...!newsItem.image && {
-                image: 'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg'            }
+                image: 'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg'},
         }));
 
         return news;
