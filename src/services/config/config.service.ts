@@ -5,7 +5,6 @@ import { join } from 'path';
 
 @Injectable()
 export class ConfigService {
-    MONGODB_URI: string;
     PORT: number;
     private readonly envConfig: { [key: string]: string };
 
@@ -15,7 +14,6 @@ export class ConfigService {
             process.env.NODE_ENV === 'staging'
         ) {
             this.envConfig = {
-                MONGODB_URI: process.env.MONGODB_URI,
                 PORT: process.env.PORT,
             };
         } else {
@@ -24,6 +22,8 @@ export class ConfigService {
     }
 
     get(key: string): string {
-        return this.envConfig[key];
+        return this.envConfig[key]
+        ? this.envConfig[key]
+        : process.env[key];
     }
 }
